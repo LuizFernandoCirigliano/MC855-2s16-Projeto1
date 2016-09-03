@@ -82,5 +82,7 @@
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-yarn-common:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-jobclient:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-annotations:2.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-snowball:3.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:3.0.3" level="project" />
   </component>
 </module>
