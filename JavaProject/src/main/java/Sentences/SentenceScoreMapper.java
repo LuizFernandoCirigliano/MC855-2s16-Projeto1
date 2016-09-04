@@ -1,21 +1,22 @@
-package WordCount;
+package Sentences;
 
 import java.io.IOException;
 
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import Stemmer.Tokenizer;
+import WordScoring.WordScorer;
 
-public class WordCountMapper  extends Mapper<LongWritable, Text, Text, IntWritable> {
-    private final IntWritable one = new IntWritable(1);
+public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, DoubleWritable> {
+    private final DoubleWritable scoreWritable = new DoubleWritable(1);
 
     private Text word = new Text();
 
-    public WordCountMapper()  {
-        System.out.println("Init WordCount Mapper");
+    public SentenceScoreMapper()  {
+        System.out.println("Init Sentence Score Mapper");
     }
 
     @Override
@@ -23,13 +24,16 @@ public class WordCountMapper  extends Mapper<LongWritable, Text, Text, IntWritab
                        Context context)
             throws IOException, InterruptedException {
         String[] result = value.toString().split("\\s");
+        double currentScore = 0;
         for (String nextToken : result) {
             nextToken = Tokenizer.tokenForString(nextToken);
             if (!nextToken.equals("")) {
-                word.set(nextToken);
-                context.write(word, one);
+                // Implement this:
+                currentScore += WordScorer.getScoreForToken(nextToken);
             }
         }
+        scoreWritable.set(currentScore);
+        context.write(value, scoreWritable);
     }
 
 }

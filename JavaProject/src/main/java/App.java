@@ -19,7 +19,7 @@ public class App {
     public static void main(String[] args) throws Exception{
         //JobClient client  = new JobClient();
         Configuration conf = new Configuration();
-        Job job = new Job(conf, "word count");
+        Job job = Job.getInstance(conf, "word count");
         String[] otherArgs = new GenericOptionsParser(conf,args).getRemainingArgs();
 
         job.setCombinerClass(WordCountReducer.class);

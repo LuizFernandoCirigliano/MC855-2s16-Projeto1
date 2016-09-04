@@ -1,3 +1,5 @@
+package Sentences;
+
 import java.text.BreakIterator;
 import java.util.Locale;
 import java.util.ArrayList;
