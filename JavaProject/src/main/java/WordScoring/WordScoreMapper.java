@@ -23,10 +23,9 @@ public class WordScoreMapper  extends Mapper<LongWritable, Text, Text, DoubleWri
             throws IOException, InterruptedException {
         String[] result = value.toString().split(" ");
         String token = result[0];
-        int count = Integer.parseInt(result[1]);
+        Integer count = Integer.parseInt(result[1]);
         if (!token.equals("") && count > 0) {
-            //int ptFreq = WordScorer.getPtFrequencyForToken(ptFreq);
-            int ptFreq = 10;
+            Integer ptFreq = WordScorer.getFrequency(token);
             word.set(token);
             score.set(count/ptFreq);
             context.write(word, score);

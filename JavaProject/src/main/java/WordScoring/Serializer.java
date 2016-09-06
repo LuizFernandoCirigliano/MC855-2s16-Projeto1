@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-// import Stemmer.Tokenizer;
+import Stemmer.Tokenizer;
 
 public class Serializer {
 
@@ -27,8 +27,8 @@ public class Serializer {
 
          while (line != null) {
              String[] fields = line.split(" ");
-            //  String word = Tokenizer.tokenForString(fields[0]);
-             String word = (fields[0]);
+             String word = Tokenizer.tokenForString(fields[0]);
+             //String word = (fields[0]);
              Integer value = dictionary.get(word);
              if (value != null) {
                dictionary.put(word, value+Integer.parseInt(fields[1]));
