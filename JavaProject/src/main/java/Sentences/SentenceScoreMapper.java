@@ -11,9 +11,7 @@ import Stemmer.Tokenizer;
 import WordScoring.WordScorer;
 
 public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, DoubleWritable> {
-    private final DoubleWritable scoreWritable = new DoubleWritable(1);
-
-    private Text word = new Text();
+    private DoubleWritable scoreWritable = new DoubleWritable();
 
     public SentenceScoreMapper()  {
         System.out.println("Init Sentence Score Mapper");
@@ -25,15 +23,19 @@ public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, Doubl
             throws IOException, InterruptedException {
         String[] result = value.toString().split("\\s");
         double currentScore = 0;
+        int count = 0;
         for (String nextToken : result) {
             nextToken = Tokenizer.tokenForString(nextToken);
             if (!nextToken.equals("")) {
                 // Implement this:
-                currentScore += WordScorer.getScoreForToken(nextToken);
+                double tokenScore = WordScorer.getScoreForToken(nextToken);
+                if (tokenScore > 0) {
+                  currentScore += tokenScore;
+                  count += 1;
+                }
             }
         }
-        scoreWritable.set(currentScore);
+        scoreWritable.set(currentScore/count);
         context.write(value, scoreWritable);
     }
-
 }
