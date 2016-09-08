@@ -28,9 +28,9 @@ public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, Doubl
             nextToken = Tokenizer.tokenForString(nextToken);
             if (!nextToken.equals("")) {
                 // Implement this:
-                double tokenScore = WordScorer.getScoreForToken(nextToken);
-                if (tokenScore > 0) {
-                  currentScore += tokenScore;
+                Double tokenScore = WordScorer.getScoreForToken(nextToken);
+                if (tokenScore != null) {
+                  currentScore += tokenScore.doubleValue();
                   count += 1;
                 }
             }
