@@ -25,7 +25,7 @@ public class Serializer {
 
      try {
         BufferedReader br = new BufferedReader(new FileReader("df.txt"));
-         String line = br.readLine();
+        String line = br.readLine();
 
          while (line != null) {
              String[] fields = line.split(" ");

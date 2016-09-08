@@ -24,8 +24,8 @@ public class WordCountReducer extends Reducer<Text, IntWritable, Text, IntWritab
 
         while (itr.hasNext()){
             sum  += itr.next().get();
-
         }
+        
         result.set(sum);
         context.write(word, result);
     }

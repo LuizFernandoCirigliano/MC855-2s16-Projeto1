@@ -34,13 +34,13 @@
                 <configuration>
                   <archive>
                     <manifest>
-                      <mainClass>WordScoring.Serializer</mainClass>
+                      <mainClass>Test</mainClass>
                     </manifest>
                   </archive>
                   <descriptorRefs>
                     <descriptorRef>jar-with-dependencies</descriptorRef>
                   </descriptorRefs>
-                  <finalName>dict_maker.jar</finalName>
+                  <finalName>test.jar</finalName>
                 </configuration>
                 <phase>package</phase>
                 <goals>

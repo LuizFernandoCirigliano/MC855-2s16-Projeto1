@@ -21,14 +21,16 @@ public class WordScoreMapper  extends Mapper<LongWritable, Text, Text, DoubleWri
     protected void map(LongWritable key, Text value,
                        Context context)
             throws IOException, InterruptedException {
-        String[] result = value.toString().split(" ");
+        String[] result = value.toString().split("\t");
         String token = result[0];
         Integer count = Integer.parseInt(result[1]);
         if (!token.equals("") && count > 0) {
             Integer ptFreq = WordScorer.getFrequency(token);
-            word.set(token);
-            score.set(count/ptFreq);
-            context.write(word, score);
+            if (ptFreq.doubleValue() > 0) {
+              word.set(token);
+              score.set(count.doubleValue()/ptFreq.doubleValue());
+              context.write(word, score);
+            }
         }
     }
 }
