@@ -35,7 +35,9 @@ public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, Doubl
                 }
             }
         }
-        scoreWritable.set(currentScore/count);
-        context.write(value, scoreWritable);
+        if (count > 0) {
+            scoreWritable.set(currentScore / count);
+            context.write(value, scoreWritable);
+        }
     }
 }

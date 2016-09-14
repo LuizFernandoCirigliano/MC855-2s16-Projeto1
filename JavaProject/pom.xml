@@ -13,55 +13,11 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.5.1</version>
           <configuration>
-            <!-- or whatever version you use -->
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>1.7</source>
+            <target>1.7</target>
           </configuration>
         </plugin>
       </plugins>
-    <!-- <plugins>
-        <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>build-a</id>
-                <configuration>
-                  <archive>
-                    <manifest>
-                      <mainClass>App</mainClass>
-                    </manifest>
-                  </archive>
-                  <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                  </descriptorRefs>
-                  <finalName>mapper.jar</finalName>
-                </configuration>
-                <phase>package</phase>
-                <goals>
-                    <goal>single</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>build-b</id>
-                <configuration>
-                  <archive>
-                    <manifest>
-                      <mainClass>Test</mainClass>
-                    </manifest>
-                  </archive>
-                  <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                  </descriptorRefs>
-                  <finalName>test.jar</finalName>
-                </configuration>
-                <phase>package</phase>
-                <goals>
-                    <goal>single</goal>
-                </goals>
-              </execution>
-            </executions>
-        </plugin>
-    </plugins> -->
     </build>
     <dependencies>
         <dependency>
