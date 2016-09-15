@@ -13,6 +13,7 @@ import WordCount.WordCountReducer;
 import WordScoring.WordScoreMapper;
 import Sentences.SentenceScoreMapper;
 
+import org.apache.hadoop.mapred.Reducer;
 
 public class App {
 
@@ -54,11 +55,11 @@ public class App {
 
         // Score each sentence based on the words
         Job job3 = Job.getInstance(conf, "sentence scoring");
-        job3.setNumReduceTasks(0);
         job3.setMapperClass(SentenceScoreMapper.class);
+        // job3.setReducerClass(Reducer.class);
         job3.setJarByClass(App.class);
-        job3.setOutputKeyClass(Text.class);
-        job3.setOutputValueClass(DoubleWritable.class);
+        job3.setOutputKeyClass(DoubleWritable.class);
+        job3.setOutputValueClass(Text.class);
         FileInputFormat.addInputPath(job3, new Path(otherArgs[0]));
         FileOutputFormat.setOutputPath(job3, new Path(otherArgs[1]));
         System.exit(job3.waitForCompletion(true) ? 0: 1);

@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import Stemmer.Tokenizer;
 import WordScoring.WordScorer;
 
-public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, DoubleWritable> {
+public class SentenceScoreMapper  extends Mapper<LongWritable, Text, DoubleWritable, Text> {
     private DoubleWritable scoreWritable = new DoubleWritable();
 
     public SentenceScoreMapper()  {
@@ -37,7 +37,7 @@ public class SentenceScoreMapper  extends Mapper<LongWritable, Text, Text, Doubl
         }
         if (count > 0) {
             scoreWritable.set(currentScore / count);
-            context.write(value, scoreWritable);
+            context.write(scoreWritable, value);
         }
     }
 }
