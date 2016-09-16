@@ -12,6 +12,7 @@ import WordCount.WordCountMapper;
 import WordCount.WordCountReducer;
 import WordScoring.WordScoreMapper;
 import Sentences.SentenceScoreMapper;
+import Sentences.IntComparator;
 
 import org.apache.hadoop.mapred.Reducer;
 
@@ -60,6 +61,7 @@ public class App {
         job3.setJarByClass(App.class);
         job3.setOutputKeyClass(DoubleWritable.class);
         job3.setOutputValueClass(Text.class);
+        job3.setSortComparatorClass(IntComparator.class);
         FileInputFormat.addInputPath(job3, new Path(otherArgs[0]));
         FileOutputFormat.setOutputPath(job3, new Path(otherArgs[1]));
         System.exit(job3.waitForCompletion(true) ? 0: 1);
